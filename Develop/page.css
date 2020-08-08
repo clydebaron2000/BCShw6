@@ -25,12 +25,20 @@ canvas {
 }
 
 .save {
-    font-size: 3vw;
+    height: 100%;
+    vertical-align: middle;
+    padding: 0;
+    text-align: center;
     color: black;
 }
 
 .save:hover {
     color: gold;
+}
+
+.cityName {
+    margin: 5px;
+    margin-left: 20px;
 }
 
 #show-sidebar {

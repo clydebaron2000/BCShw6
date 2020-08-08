@@ -1,10 +1,10 @@
 $(function() {
+    var savedCities;
     const APIKey = "bc401651d6a9a9e281fca78c05aa65bd";
     var windowWidth = $(window).width();
     var windowHeight = $(window).height();
     var iconSize;
     var iconIDArray;
-    var savedCities = [];
     //modded
     var unit = "imperial";
     //test
@@ -35,8 +35,22 @@ $(function() {
                     iconIDArray = [];
                     var today = response.daily.shift(); //remove first element
                     $('#todayHeader').text(moment(today.dt * 1000).format('dddd, MMMM Do, YYYY'));
-                    $("#cityName").text(cityState).append($("<button class='btn save' value='" + cityState + "' style='float:right'>").append("<i class='far fa-star'>"));
+                    $("#cityName").text(cityState).append($("<button class='btn save' value='" + cityState + "' style='float:right'>").append($("<h1>").append($("<i class='fa" + ((savedCities.includes(cityState)) ? "s" : "r") + " fa-star'>"))));
                     iconIDArray.push(today.weather[0].icon);
+                    $(".save").on("click", function() { //save button functionality
+                        console.log($(this).val());
+                        var icon = $(this)[0].childNodes[0].childNodes[0];
+                        if (icon.className === "far fa-star") { //save
+                            icon.setAttribute("class", "fas fa-star");
+                            //add to savedCities
+                            savedCities.push($(this).val());
+                            renderSavedCities();
+                        } else { //unsave
+                            icon.setAttribute("class", "far fa-star");
+                            savedCities.splice(savedCities.indexOf($(this).val()), 1, );
+                            renderSavedCities();
+                        }
+                    });
                     $("#todayHeader").append($("<img class='icon' src='http://openweathermap.org/img/wn/" + today.weather[0].icon + iconSize + ".png'>"))
                     var todayInfo = $("<div id='todayInfo'>");
                     todayInfo.append($("<p>").text("Temperature (°" + tempUnits + "): " + today.temp.max + "/" + today.temp.min));
@@ -103,6 +117,16 @@ $(function() {
         }
     }
 
+    function renderSavedCities() {
+        $("#savedCities").empty();
+        for (city of savedCities) {
+            $("#savedCities").append($("<li>").append($("<button class='btn btn-light cityName'>").text(city)));
+        }
+        $(".cityName").on("click", function() {
+            renderPage($(this).text(), "US", unit);
+        })
+    }
+
     $("#form").submit(function(event) {
         event.preventDefault();
         var input = $("#userInput").val();
@@ -116,18 +140,6 @@ $(function() {
         }
     });
 
-    $(".save").on("click", function() {
-        console.log(("pressed"));
-    });
-
-
-    //initial
-    renderPage("San Diego, CA", "US", unit);
-
-
-
-
-
     $(window).on("resize", function() {
         if ($(this).width() !== windowWidth || $(this).height() !== windowHeight) {
             console.log("resized");
@@ -137,4 +149,11 @@ $(function() {
             responsiveIcons();
         }
     });
+
+    function init() {
+        savedCities = ["San Diego,CA"];
+        renderSavedCities();
+        renderPage(savedCities[0], "US", unit);
+    }
+    init();
 })
