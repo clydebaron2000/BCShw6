@@ -1,46 +1,29 @@
-# 06 Server-Side APIs: Weather Dashboard
+# BCS HW 6: Weather Report!
 
-Developers are often tasked with retrieving data from another application's API and using it in the context of their own. Third-party APIs allow developers to access their data and functionality by making requests with specific parameters to a URL. Your challenge is to build a weather dashboard that will run in the browser and feature dynamically updated HTML and CSS.
+An HTML site that utilizes JavaScript, openweathermap.org, and Mohamed Azouaoui's sidebar menu to schedule your day.
 
-Use the [OpenWeather API](https://openweathermap.org/api) to retrieve weather data for cities. The documentation includes a section called "How to start" that will provide basic setup and usage instructions. Use `localStorage` to store any persistent data.
+## Access to the HTML
 
-## User Story
+The active URL for this documant is as follows:
 
-```
-AS A traveler
-I WANT to see the weather outlook for multiple cities
-SO THAT I can plan a trip accordingly
-```
+https://clydebaron2000.github.io/BCShw6/
 
-## Acceptance Criteria
+Click the link to view the full project via Github Pages.
 
-```
-GIVEN a weather dashboard with form inputs
-WHEN I search for a city
-THEN I am presented with current and future conditions for that city and that city is added to the search history
-WHEN I view current weather conditions for that city
-THEN I am presented with the city name, the date, an icon representation of weather conditions, the temperature, the humidity, the wind speed, and the UV index
-WHEN I view the UV index
-THEN I am presented with a color that indicates whether the conditions are favorable, moderate, or severe
-WHEN I view future weather conditions for that city
-THEN I am presented with a 5-day forecast that displays the date, an icon representation of weather conditions, the temperature, and the humidity
-WHEN I click on a city in the search history
-THEN I am again presented with current and future conditions for that city
-WHEN I open the weather dashboard
-THEN I am presented with the last searched city forecast
-```
+## Project Preview
+<img src="Assets/mainMenu.PNG" width="200px"/>
 
-The following image demonstrates the application functionality:
 
-![weather dashboard demo](./Assets/06-server-side-apis-homework-demo.png)
+## Author
 
-## Review
+* **Clyde Baron Rapinan** -*Initial work*- https://github.com/clydebaron2000
 
-You are required to submit the following for review:
+## Acknowledgments
 
-* The URL of the deployed application.
+* UCSD Full Stack Bootcamp for the assignment
+* Mohamed Azouaoui for his sidebar menu
+* [openweathermap.org](https://openweathermap.org) for their free API data on weather.
 
-* The URL of the GitHub repository. Give the repository a unique name and include a README describing the project.
+## License
 
-- - -
-© 2019 Trilogy Education Services, a 2U, Inc. brand. All Rights Reserved.
+[GNU](https://choosealicense.com/licenses/gpl-3.0/)
