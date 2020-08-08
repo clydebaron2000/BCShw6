@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+    <!-- fa -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet" />
+
+    <link rel="stylesheet" href="style.css" />
+    <title>Weather data App U.S.A.</title>
+</head>
+
+<body>
+    <!-- for now -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <h1 id='pageTitle'>
+            Weather Dashboard
+        </h1>
+    </nav>
+    <div class="row">
+        <nav class="col-md-2 bg-light sidebar">
+            <div class="sidebar-sticky container">
+                <input type="text">
+                <ul class="nav flex-column">
+                    <li class="nav-item">item!</li>
+                </ul>
+            </div>
+        </nav>
+        <main class="main">
+            <div class="Layout">
+                <div class="menu">
+                    choices
+                </div>
+                <div class="today">
+                    <canvas id="chartjs-0" class="chartjs" width="" height="" style="display: block; height: auto; width: auto;"></canvas>
+                </div>
+                <div class="forecast">let's go</div>
+            </div>
+        </main>
+    </div>
+    <!-- chart.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+    <!-- jQuery JS -->
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <!-- moment -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <!-- popper -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <!-- boot .mins.js -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <!-- Code to the JavaScript File -->
+    <script src="script.js"></script>
+</body>
+
+</html>

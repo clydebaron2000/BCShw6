@@ -1,0 +1,50 @@
+.forecast {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.card {
+    padding: 10px;
+    background-color: skyblue;
+    color: snow;
+}
+
+canvas {
+    background-color: white;
+}
+
+#show-sidebar {
+    padding: 10px;
+    background-color: lightgray;
+}
+
+#chart {
+    height: 50%;
+}
+
+#today {
+    padding: 70px;
+    padding-top: 0px;
+}
+
+#cityName {
+    text-align: center;
+}
+
+.futureDay>.card-title {
+    font-size: 2vw;
+    font-weight: bold;
+}
+
+.futureDay>.card-body>p {
+    font-size: 1vw;
+}
+
+#chart {
+    width: 40vw;
+    float: right;
+}
+
+#todayInfo {
+    float: left;
+}
