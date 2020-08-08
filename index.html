@@ -1,48 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <!-- bootstrap -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Sidebar template</title>
+    <!-- boot -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
     <!-- fa -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet" />
+    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
 
-    <link rel="stylesheet" href="style.css" />
-    <title>Weather data App U.S.A.</title>
+    <link rel="stylesheet" href="sidebar.css" />
+    <link rel="stylesheet" href="page.css" />
 </head>
 
 <body>
-    <!-- for now -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <h1 id='pageTitle'>
-            Weather Dashboard
-        </h1>
-    </nav>
-    <div class="row">
-        <nav class="col-md-2 bg-light sidebar">
-            <div class="sidebar-sticky container">
-                <input type="text">
-                <ul class="nav flex-column">
-                    <li class="nav-item">item!</li>
-                </ul>
+    <div class="page-wrapper menu-theme">
+        <a id="show-sidebar" class="btn btn-sm" style='z-index: 69;' href="#">
+            <!-- add padding -->
+            <b>Search A City <i class="fa fa-search" aria-hidden="true"></i></b>
+        </a>
+        <nav id="sidebar" class="sidebar-wrapper" style='z-index: 70;'>
+            <div class="sidebar-content">
+                <div class="sidebar-brand">
+                    <a href="#"></a>
+                    <div id="close-sidebar">
+                        <i class="fas fa-times"></i>
+                    </div>
+                </div>
+                <!-- sidebar-header  -->
+                <div class="sidebar-search">
+                    <div>
+                        <form class="input-group" id='form'>
+                            <input type="text submit" id='userInput' class="form-control search-menu" placeholder="City, State">
+                            <div class="input-group-append">
+                                <span class="input-group-text">
+                                    <i class="fa fa-search" aria-hidden="true"></i>
+                                </span>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- sidebar-search  -->
+                <div class="sidebar-menu">
+                    <ul>
+                        <li class="header-menu">
+                            <span>Saved Cities:</span>
+                        </li>
+                    </ul>
+                    <ul id="savedCities">
+                    </ul>
+                </div>
+                <!-- sidebar-menu  -->
             </div>
         </nav>
-        <main class="main">
-            <div class="Layout">
-                <div class="menu">
-                    choices
+        <!-- sidebar-wrapper  -->
+        <main class="page-content">
+            <div class="container-fluid">
+                <!-- body -->
+                <div class="card">
+                    <h1 class='card-title' id='cityName'></h1>
                 </div>
-                <div class="today">
-                    <canvas id="chartjs-0" class="chartjs" width="" height="" style="display: block; height: auto; width: auto;"></canvas>
+                <br>
+                <div class="card" id='today-card'>
+                    <div class="card-title" id='todayHeader'></div>
+                    <div class="card-body" id='today'></div>
                 </div>
-                <div class="forecast">let's go</div>
+                <h2 id='forecast-header'>7-day Forecast:</h2>
+                <div class="forecast"></div>
             </div>
-        </main>
     </div>
+    <!-- page-content" -->
+    </div>
+
     <!-- chart.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
     <!-- jQuery JS -->
@@ -51,10 +84,17 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <!-- popper -->
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-    <!-- boot .mins.js -->
+    <!-- page-wrapper -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <!-- boot .min.js -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
-    <!-- Code to the JavaScript File -->
+
+
+
+    <script src="menu.js"></script>
     <script src="script.js"></script>
+
 </body>
 
 </html>
