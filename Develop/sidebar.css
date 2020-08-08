@@ -329,9 +329,10 @@ body {
     padding-top: 20px;
 }
 
-.page-wrapper .page-content>div {
+
+/* .page-wrapper .page-content>div {
     padding: 20px 40px;
-}
+} */
 
 .page-wrapper .page-content {
     overflow-x: hidden;

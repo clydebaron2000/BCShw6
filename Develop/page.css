@@ -1,12 +1,23 @@
+p,
+.card-title {
+    margin: 0;
+    padding: 0;
+}
+
 .forecast {
     display: flex;
     justify-content: space-evenly;
+    flex-wrap: wrap;
 }
 
 .card {
     padding: 10px;
     background-color: skyblue;
     color: snow;
+}
+
+.card>.card-body {
+    padding: 0px;
 }
 
 canvas {
@@ -22,8 +33,23 @@ canvas {
     height: 50%;
 }
 
+#todayHeader {
+    font-size: max(2vw, 25px);
+    font-weight: bold;
+}
+
+#graphLabel {
+    font-size: max(1.5vw, 15px);
+    font-weight: bold;
+}
+
+#today-card {
+    margin: 0 auto;
+    width: fit-content;
+}
+
 #today {
-    padding: 70px;
+    padding: 5px;
     padding-top: 0px;
 }
 
@@ -32,12 +58,13 @@ canvas {
 }
 
 .futureDay>.card-title {
-    font-size: 2vw;
+    font-size: calc(17px+2vw);
+    text-align: center;
     font-weight: bold;
 }
 
 .futureDay>.card-body>p {
-    font-size: 1vw;
+    font-size: calc(11px+ 1vw);
 }
 
 #chart {
@@ -47,4 +74,22 @@ canvas {
 
 #todayInfo {
     float: left;
+    padding-right: 20px;
+}
+
+@media screen and (max-width: 800px) {
+    #chart {
+        width: 85vw;
+        float: none;
+    }
+    #todayInfo {
+        padding-right: 0px;
+        float: none;
+    }
+    .page-wrapper .page-content>div {
+        padding: 2.5px;
+    }
+    .futureDay {
+        margin: 1.2px;
+    }
 }

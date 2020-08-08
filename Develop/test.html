@@ -34,14 +34,14 @@
                 <!-- sidebar-header  -->
                 <div class="sidebar-search">
                     <div>
-                        <div class="input-group">
-                            <input type="text" class="form-control search-menu" placeholder="Search...">
+                        <form class="input-group" id='form'>
+                            <input type="text submit" id='userInput' class="form-control search-menu" placeholder="City, State">
                             <div class="input-group-append">
                                 <span class="input-group-text">
                                     <i class="fa fa-search" aria-hidden="true"></i>
                                 </span>
                             </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
                 <!-- sidebar-search  -->
@@ -60,11 +60,11 @@
             <div class="container-fluid">
                 <!-- body -->
                 <h1 id='cityName'></h1>
-                <div class="card">
-                    <h1 class="card-title" id='todayHeader'></h1>
+                <div class="card" id='today-card'>
+                    <div class="card-title" id='todayHeader'></div>
                     <div class="card-body" id='today'></div>
                 </div>
-                <h2 id='forecast-header'>7 day Forecast:</h2>
+                <h2 id='forecast-header'>7-day Forecast:</h2>
                 <div class="forecast"></div>
             </div>
     </div>
