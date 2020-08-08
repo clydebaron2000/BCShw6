@@ -4,6 +4,7 @@ $(function() {
     var windowHeight = $(window).height();
     var iconSize;
     var iconIDArray;
+    var savedCities = [];
     //modded
     var unit = "imperial";
     //test
@@ -34,7 +35,7 @@ $(function() {
                     iconIDArray = [];
                     var today = response.daily.shift(); //remove first element
                     $('#todayHeader').text(moment(today.dt * 1000).format('dddd, MMMM Do, YYYY'));
-                    $("#cityName").text(cityState);
+                    $("#cityName").text(cityState).append($("<button class='btn save' value='" + cityState + "' style='float:right'>").append("<i class='far fa-star'>"));
                     iconIDArray.push(today.weather[0].icon);
                     $("#todayHeader").append($("<img class='icon' src='http://openweathermap.org/img/wn/" + today.weather[0].icon + iconSize + ".png'>"))
                     var todayInfo = $("<div id='todayInfo'>");
@@ -60,7 +61,7 @@ $(function() {
                     console.log(dailyData);
                     dailyData.length = count;
                     for (day of dailyData) {
-                        var card = $("<div class='futureDay card' >");
+                        var card = $("<div class='futureDay card'>");
                         card.append($("<div class='card-title'>").text(moment(day.dt * 1000).format("MM/DD/YY")));
                         var card_body = $("<div class='card-body'>");
                         card_body.append($("<p>").text("UVI: " + day.uvi));
@@ -115,7 +116,9 @@ $(function() {
         }
     });
 
-
+    $(".save").on("click", function() {
+        console.log(("pressed"));
+    });
 
 
     //initial

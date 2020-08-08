@@ -24,6 +24,15 @@ canvas {
     background-color: white;
 }
 
+.save {
+    font-size: 3vw;
+    color: black;
+}
+
+.save:hover {
+    color: gold;
+}
+
 #show-sidebar {
     padding: 10px;
     background-color: lightgray;
