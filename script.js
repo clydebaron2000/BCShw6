@@ -18,10 +18,26 @@ $(function() {
         var tempUnits, distanceUnits;
         tempUnits = ((units === "imperial") ? "F" : "C");
         distanceUnits = ((units === "imperial") ? "MPH" : "KMH");
+        // var currentLat, currentLong;
+        // navigator.geolocation.getCurrentPosition(function(p) {
+        //     currentLat = p.coords.latitude;
+        //     currentLong = p.coords.longitude;
+        //     console.log(currentLat);
+        //     console.log(currentLong);
+        //     console.log(p.coords.accuracy);
+        //     $.ajax({
+        //         url: "https://api.openweathermap.org/data/2.5/weather?lat=" + currentLat + "&lon=" + currentLong + "&appid=" + APIKey,
+        //         method: "GET",
+        //         success: function(response) {
+        //             console.log(response);
+        //         }
+        //     });
+        // });
         $.ajax({
             url: "https://api.openweathermap.org/data/2.5/weather?q=" + cityState + "," + country + "&units=" + units + "&appid=" + APIKey,
             method: "GET",
             success: function(response) {
+                console.log(response);
                 if (response.sys.country !== country) {
                     console.log("not");
                     return false;
@@ -44,10 +60,12 @@ $(function() {
                             icon.setAttribute("class", "fas fa-star");
                             //add to savedCities
                             savedCities.push($(this).val());
+                            localStorage.setItem("savedCities", JSON.stringify(savedCities));
                             renderSavedCities();
                         } else { //unsave
                             icon.setAttribute("class", "far fa-star");
                             savedCities.splice(savedCities.indexOf($(this).val()), 1, );
+                            localStorage.setItem("savedCities", JSON.stringify(savedCities));
                             renderSavedCities();
                         }
                     });
@@ -72,7 +90,6 @@ $(function() {
                     $("#today").append(chart);
 
                     var dailyData = response.daily;
-                    console.log(dailyData);
                     dailyData.length = count;
                     for (day of dailyData) {
                         var card = $("<div class='futureDay card'>");
@@ -151,7 +168,14 @@ $(function() {
     });
 
     function init() {
-        savedCities = ["San Diego,CA"];
+        savedCities = JSON.parse(localStorage.getItem("savedCities"));
+        console.log(savedCities);
+        if (savedCities === null || typeof(savedCities) !== "object") {
+            savedCities = [];
+            savedCities.push("San Diego, CA");
+            localStorage.setItem("savedCities", JSON.stringify(savedCities));
+        }
+        console.log(savedCities);
         renderSavedCities();
         renderPage(savedCities[0], "US", unit);
     }
