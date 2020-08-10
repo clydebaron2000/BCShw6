@@ -29,11 +29,11 @@ canvas {
     vertical-align: middle;
     padding: 0;
     text-align: center;
-    color: black;
+    color: gold;
 }
 
 .save:hover {
-    color: gold;
+    color: yellow;
 }
 
 .cityName {

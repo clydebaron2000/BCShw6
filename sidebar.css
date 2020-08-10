@@ -1,3 +1,8 @@
+/* Mohamed Azouaoui */
+
+
+/* modified and recolored */
+
 @keyframes swing {
     0% {
         transform: rotate(0deg);
@@ -383,6 +388,60 @@ body {
     background: transparent;
 }
 
+.sidebar-footer {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    display: flex;
+}
+
+
+/*-----------------------------sidebar-footer-------------------------------------------------*/
+
+.sidebar-footer {
+    padding: 1vw;
+}
+
+.sidebar-footer>button {
+    border: none;
+}
+
+.sidebar-footer>a {
+    flex-grow: 1;
+    text-align: center;
+    height: 30px;
+    line-height: 30px;
+    position: relative;
+}
+
+.sidebar-footer>a .notification {
+    position: absolute;
+    top: 0;
+}
+
+.badge-sonar {
+    display: inline-block;
+    background: #980303;
+    border-radius: 50%;
+    height: 8px;
+    width: 8px;
+    position: absolute;
+    top: 0;
+}
+
+.badge-sonar:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    border: 2px solid #980303;
+    opacity: 0;
+    border-radius: 50%;
+    width: 100%;
+    height: 100%;
+    animation: sonar 1.5s infinite;
+}
+
 
 /*-----------------------------menu-theme-------------------------------------------------*/
 
@@ -391,12 +450,12 @@ body {
     background: lightgray;
 }
 
-
-/* .menu-theme .sidebar-wrapper .sidebar-header,
-.menu-theme .sidebar-wrapper .sidebar-search,
-.menu-theme .sidebar-wrapper .sidebar-menu {
+.menu-theme .sidebar-wrapper .sidebar-header,
+.menu-theme .sidebar-wrapper,
+.sidebar-footer,
+.menu-theme .sidebar-wrapper {
     border-top: 1px solid lightslategray;
-} */
+}
 
 .menu-theme .sidebar-wrapper .sidebar-search input.search-menu,
 .menu-theme .sidebar-wrapper .sidebar-search .input-group-text {

@@ -5,28 +5,29 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>Sidebar template</title>
-    <!-- boot -->
+    <title>US Weather Dashboard</title>
+    <!-- bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
-    <!-- fa -->
+    <!-- font awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
-    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
-
+    <!-- Mohamed Azouaoui stylesheet -->
     <link rel="stylesheet" href="sidebar.css" />
+    <!-- my stylesheet -->
     <link rel="stylesheet" href="page.css" />
 </head>
 
 <body>
     <div class="page-wrapper menu-theme">
+        <!-- button for hidden menu -->
         <a id="show-sidebar" class="btn btn-sm" style='z-index: 69;' href="#">
-            <!-- add padding -->
-            <b>Search A City <i class="fa fa-search" aria-hidden="true"></i></b>
+            <b>Search A US City <i class="fa fa-search" aria-hidden="true"></i></b>
         </a>
         <nav id="sidebar" class="sidebar-wrapper" style='z-index: 70;'>
             <div class="sidebar-content">
                 <div class="sidebar-brand">
-                    <a href="#"></a>
+                    <!-- empty brand for spacing  -->
+                    <a>US City Forecast</a>
+                    <!-- x for exiting -->
                     <div id="close-sidebar">
                         <i class="fas fa-times"></i>
                     </div>
@@ -34,6 +35,7 @@
                 <!-- sidebar-header  -->
                 <div class="sidebar-search">
                     <div>
+                        <!-- form -->
                         <form class="input-group" id='form'>
                             <input type="text submit" id='userInput' class="form-control search-menu" placeholder="City, State">
                             <div class="input-group-append">
@@ -44,57 +46,61 @@
                         </form>
                     </div>
                 </div>
-                <!-- sidebar-search  -->
                 <div class="sidebar-menu">
                     <ul>
                         <li class="header-menu">
-                            <span>Saved Cities:</span>
+                            <span>Starred Cities:</span>
                         </li>
                     </ul>
+                    <!-- saved Cities list -->
                     <ul id="savedCities">
                     </ul>
                 </div>
-                <!-- sidebar-menu  -->
+                <div class="sidebar-footer">
+                    <button id='unitButton'>
+                       Toggle Units: <span id='units'>
+                       </span> 
+                    </button>
+                </div>
+                <!-- sidebar-menu end -->
             </div>
         </nav>
-        <!-- sidebar-wrapper  -->
+        <!-- sidebar-wrapper end  -->
         <main class="page-content">
             <div class="container-fluid">
                 <!-- body -->
                 <div class="card">
+                    <!-- city title placeholder -->
                     <h1 class='card-title' id='cityName'></h1>
                 </div>
                 <br>
                 <div class="card" id='today-card'>
+                    <!-- today card -->
                     <div class="card-title" id='todayHeader'></div>
                     <div class="card-body" id='today'></div>
                 </div>
+                <!-- forecast -->
                 <h2 id='forecast-header'>7-day Forecast:</h2>
                 <div class="forecast"></div>
             </div>
+        </main>
     </div>
-    <!-- page-content" -->
-    </div>
-
+    <!-- page-content end -->
     <!-- chart.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
     <!-- jQuery JS -->
-    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <!-- moment -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <!-- popper -->
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-    <!-- page-wrapper -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <!-- boot .min.js -->
+    <!-- bootstrap -->
+
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
-
-
-
+    <!-- menu script by Mohamed Azouaoui -->
     <script src="menu.js"></script>
+    <!-- my script -->
     <script src="script.js"></script>
-
 </body>
 
 </html>
