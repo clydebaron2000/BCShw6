@@ -3,8 +3,7 @@ $(function() {
     const APIKey = "bc401651d6a9a9e281fca78c05aa65bd";
     var windowWidth = $(window).width();
     var windowHeight = $(window).height();
-    //modded
-    var unit = "imperial";
+    var unit = "imperial"; //initial
     //geolocation
     // var currentLat, currentLong;
     // navigator.geolocation.getCurrentPosition(function(p) {
@@ -47,7 +46,12 @@ $(function() {
                         $("<div class='card' id='today-card'>").append(
                             $("<div class='card-title' id='todayHeader'>"))
                         .append($("<div class='card-body' id='today'>"))
-                    )
+                    );
+                    $("#title").append(
+                        $("<div class='card'>").append(
+                            $("<h1 class='card-title' id='cityName'>")
+                        ));
+                    $("#forecast-header").text("7-day Forecast:");
                     $("#userInput").tooltip("disable");
                     $("#userInput").attr("style", "background:white");
                     $(".input-group-text").attr("style", "background:white");
@@ -204,6 +208,7 @@ $(function() {
     function clearPage() {
         $(".forecast").empty();
         $("#todayDiv").empty();
+        $("#title").empty();
         $("#cityName").empty();
     }
 
