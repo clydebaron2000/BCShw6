@@ -141,9 +141,9 @@ body {
 /*----------------sidebar-content----------------*/
 
 .sidebar-content {
-    max-height: calc(100% - 30px);
-    height: calc(100% - 30px);
-    overflow-y: auto;
+    max-height: calc(100% - 55px);
+    height: calc(100% - 55px);
+    /* overflow-y: auto; */
     position: relative;
 }
 
