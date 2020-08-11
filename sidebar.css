@@ -404,6 +404,7 @@ body {
 
 .sidebar-footer>button {
     border: none;
+    margin: 2px;
 }
 
 .sidebar-footer>a {
