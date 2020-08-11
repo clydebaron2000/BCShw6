@@ -19,6 +19,22 @@ $(function() {
             url: "https://api.openweathermap.org/data/2.5/weather?q=" + cityState + "," + country + "&units=" + units + "&appid=" + APIKey,
             method: "GET",
             success: function(response) {
+                // console.log(response);
+                // $.ajax({
+                //     url: "https://api.openweathermap.org/data/2.5/forecast?id=" + response.id + "&appid=" + APIKey,
+                //     method: "GET",
+                //     success: function(response) {
+                //         console.log("response:");
+                //         console.log(response);
+                //         console.log("response items:");
+                //         var list = response.list;
+                //         for (item of list) {
+                //             console.log(item);
+                //             var out = moment((item.dt * 1000)).add(response.city.timezone, 'seconds').format("YYYY-DD-MM hh:mm:ss");
+                //             console.log(out);
+                //         }
+                //     }
+                // });
                 cityState = (international) ? (response.name + ", " + response.sys.country) : capitalize_Words_state(cityState);
                 if (!international && response.sys.country !== country) {
                     $("#userInput").attr("style", "background:pink");
@@ -32,15 +48,8 @@ $(function() {
                     method: "GET"
                 }).then(function(response) {
                     clearPage();
-                    $("#todayDiv").append(
-                        $("<div class='card' id='today-card'>").append(
-                            $("<div class='card-title' id='todayHeader'>"))
-                        .append($("<div class='card-body' id='today'>"))
-                    );
-                    $("#title").append(
-                        $("<div class='card'>").append(
-                            $("<h1 class='card-title' id='cityName'>")
-                        ));
+                    $("#todayDiv").append($("<div class='card' id='today-card'>").append($("<div class='card-title' id='todayHeader'>")).append($("<div class='card-body' id='today'>")));
+                    $("#title").append($("<div class='card'>").append($("<h1 class='card-title' id='cityName'>")));
                     $("#forecast-header").text("7-day Forecast:");
                     $("#userInput").tooltip("disable");
                     $("#userInput").attr("style", "background:white");
@@ -65,7 +74,8 @@ $(function() {
                             renderSavedCities();
                         }
                     });
-                    $("#todayHeader").append($("<img class='icon' data-toggle='tooltip' title='" + today.weather[0].description + "' src='http://openweathermap.org/img/wn/" + today.weather[0].icon + iconSize + ".png'>"))
+                    $("#todayHeader").append($("<img class='icon' data-toggle='tooltip' title='" + today.weather[0].description + "' src='https://openweathermap.org/img/wn/" + today.weather[0].icon + iconSize + ".png'>"))
+                    var timezoneOffset = response.timezone_offset;
                     var todayInfo = $("<div id='todayInfo'>");
                     todayInfo.append($("<p>").text("Temperature (°" + tempUnits + "): " + today.temp.max + "/" + today.temp.min));
                     var xAxisLables = [];
@@ -79,16 +89,16 @@ $(function() {
                     for (hour of hourlyData) {
                         //icons and icon descriptions for chart
                         var icon = new Image();
-                        icon.src = "http://openweathermap.org/img/wn/" + hour.weather[0].icon + ".png";
+                        icon.src = "https://openweathermap.org/img/wn/" + hour.weather[0].icon + ".png";
                         icon.style = "width:10px; height:10px;";
                         houlyIcons.push(icon);
                         houlyIconDescription.push(hour.weather[0].description);
                         //wind
                         hourlyWindSpeed.push(hour.wind_speed);
                         //x axis labels
-                        xAxisLables.push(moment(hour.dt * 1000).format('dd hA'));
+                        xAxisLables.push(moment(hour.dt * 1000).utc().add(timezoneOffset, 'seconds').format('dd hA'));
                         //tooltip labels
-                        tooltipLabels.push(moment(hour.dt * 1000).format('dddd, hA'));
+                        tooltipLabels.push(moment(hour.dt * 1000).utc().add(timezoneOffset, 'seconds').format('dddd, hA'));
                         //temp
                         data.push(hour.temp);
                     }
@@ -100,16 +110,15 @@ $(function() {
                     var chart = $("<div id='chart'>").append($("<label for='chartjs-0'>"));
                     chart.append($("<canvas id='chartjs-0' class='chartjs' style='display: block;float:right'>"));
                     $("#today").append(chart);
-
                     var dailyData = response.daily;
                     dailyData.length = count;
                     for (day of dailyData) {
                         var card = $("<div class='futureDay card'>");
-                        card.append($("<div class='card-title'>").text(moment(day.dt * 1000).format("dd, MMMM Do")));
+                        card.append($("<div class='card-title'>").text(moment(day.dt * 1000).utc().add(timezoneOffset, 'seconds').format("dd, MMMM Do")));
                         var card_body = $("<div class='card-body'>");
                         card_body.append($("<p>").text("UVI: ").append($("<span class='uvi' style='color:" + uviColor(day.uvi) + "'>").text(day.uvi)));
                         iconIDArray.push(day.weather[0].icon);
-                        card_body.append($("<img class='icon' data-toggle='tooltip' title='" + day.weather[0].description + "' src='http://openweathermap.org/img/wn/" + day.weather[0].icon + iconSize + ".png'>"))
+                        card_body.append($("<img class='icon' data-toggle='tooltip' title='" + day.weather[0].description + "' src='https://openweathermap.org/img/wn/" + day.weather[0].icon + iconSize + ".png'>"))
                         card_body.append($("<p>").text("Temp (°" + tempUnits + "): " + day.temp.max.toFixed(1) + " / " + day.temp.min.toFixed(1)));
                         card_body.append($("<p>").text("Humidity: " + day.humidity + "%"));
                         card.append(card_body);
@@ -120,27 +129,25 @@ $(function() {
                         "data": {
                             "labels": xAxisLables,
                             "datasets": [{
-                                    "label": "°" + tempUnits,
-                                    "pointStyle": houlyIcons,
-                                    pointHoverRadius: 20,
-                                    pointHitRadius: 20,
-                                    "data": data,
-                                    "fill": false,
-                                    "borderColor": "rgba(0, 0, 0,0)",
-                                    "lineTension": 0.0
-                                },
-                                {
-                                    "label": "Condition",
-                                    "hidden": true,
-                                    "data": tooltipLabels,
-                                }
-                            ]
+                                "label": "°" + tempUnits,
+                                "pointStyle": houlyIcons,
+                                pointHoverRadius: 20,
+                                pointHitRadius: 20,
+                                "data": data,
+                                "fill": false,
+                                "borderColor": "rgba(0, 0, 0,0)",
+                                "lineTension": 0.0
+                            }, {
+                                "label": "Condition",
+                                "hidden": true,
+                                "data": tooltipLabels,
+                            }]
                         },
                         "options": {
                             responsive: true,
                             title: {
                                 display: true,
-                                text: '24-Hour Forecast',
+                                text: '24-Hour Forecast (GMT' + (parseInt(timezoneOffset) / 60 / 70) + ")",
                                 fontSize: 14,
                                 fontStyle: 'bold',
                             },
@@ -204,15 +211,13 @@ $(function() {
 
     function responsiveIcons() {
         // set icon size
-        if (windowWidth > 800)
-            iconSize = "@2x";
-        else
-            iconSize = "";
+        if (windowWidth > 800) iconSize = "@2x";
+        else iconSize = "";
         var i = 0;
         // if .icon class can be found
         for (img of $(".icon")) {
             //set all src to new size
-            img.setAttribute("src", "http://openweathermap.org/img/wn/" + iconIDArray[i++] + iconSize + ".png")
+            img.setAttribute("src", "https://openweathermap.org/img/wn/" + iconIDArray[i++] + iconSize + ".png")
         }
     }
 
@@ -220,31 +225,25 @@ $(function() {
         $("#savedCities").empty();
         var i = 0;
         for (city of savedCities) {
-            $("#savedCities").append($("<li>").append(
-                $("<button class='btn btn-light cityName sidebar-item'>").text(city).append(
-                    (((++i) === 1) ? $("<i class='fas fa-home' style='margin-left:3px'>") : ""))));
+            $("#savedCities").append($("<li>").append($("<button class='btn btn-light cityName sidebar-item'>").text(city).append(
+                (((++i) === 1) ? $("<i class='fas fa-home' style='margin-left:3px'>") : ""))));
         }
         //add functionality for all buttons
         $(".cityName").on("click", function() {
             renderPage($(this).text(), "US", unit);
         })
     }
-
     $("#unitButton").on('click', function() {
         var buttonVal = $('#units').text();
-        if (buttonVal === "imperial")
-            unit = "metric";
-        else
-            unit = "imperial";
+        if (buttonVal === "imperial") unit = "metric";
+        else unit = "imperial";
         $("#units").text(unit);
         renderPage($("#cityName").text(), "US", unit);
     });
     $("#international").on('click', function() {
         var buttonVal = $('#int').text();
-        if (buttonVal === "local")
-            $('#int').text("international");
-        else
-            $('#int').text("local");
+        if (buttonVal === "local") $('#int').text("international");
+        else $('#int').text("local");
         international = !(buttonVal === "international");
         if (international) {
             $("#searchButton").text("Search A City");
@@ -254,15 +253,11 @@ $(function() {
             $("#menuTitle").text("US City Weather Forecast");
         }
     });
-
     $("#form").submit(function(event) {
         event.preventDefault();
         var input = $("#userInput").val();
         renderPage(input, "US", unit);
     });
-
-
-
     $(window).on("resize", function() {
         if ($(this).width() !== windowWidth || $(this).height() !== windowHeight) {
             windowWidth = $(this).width();
