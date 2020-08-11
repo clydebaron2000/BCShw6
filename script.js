@@ -35,12 +35,20 @@ $(function() {
                 if (response.sys.country !== country) {
                     $("#userInput").attr("style", "background:pink");
                     $(".input-group-text").attr("style", "background:pink");
+                    $("#userInput").tooltip("enable");
+                    $("#userInput").tooltip("show");
                 }
-                clearPage();
                 $.ajax({
                     url: "https://api.openweathermap.org/data/2.5/onecall?lat=" + response.coord.lat + "&lon=" + response.coord.lon + "&units=" + units + "&appid=" + APIKey,
                     method: "GET"
                 }).then(function(response) {
+                    clearPage();
+                    $("#todayDiv").append(
+                        $("<div class='card' id='today-card'>").append(
+                            $("<div class='card-title' id='todayHeader'>"))
+                        .append($("<div class='card-body' id='today'>"))
+                    )
+                    $("#userInput").tooltip("disable");
                     $("#userInput").attr("style", "background:white");
                     $(".input-group-text").attr("style", "background:white");
                     iconIDArray = [];
@@ -178,6 +186,8 @@ $(function() {
             error: function(xhr, ajaxOptions, thrownError) {
                 $("#userInput").attr("style", "background:pink");
                 $(".input-group-text").attr("style", "background:pink");
+                $("#userInput").tooltip("enable");
+                $("#userInput").tooltip("show");
             }
         });
     }
@@ -193,8 +203,7 @@ $(function() {
 
     function clearPage() {
         $(".forecast").empty();
-        $("#todayHeader").empty();
-        $("#today").empty();
+        $("#todayDiv").empty();
         $("#cityName").empty();
     }
 
