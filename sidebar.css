@@ -400,6 +400,7 @@ body {
 
 .sidebar-footer {
     padding: 1vw;
+    background-color: lightgray;
 }
 
 .sidebar-footer>button {

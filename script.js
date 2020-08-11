@@ -221,7 +221,7 @@ $(function() {
         var i = 0;
         for (city of savedCities) {
             $("#savedCities").append($("<li>").append(
-                $("<button class='btn btn-light cityName'>").text(city).append(
+                $("<button class='btn btn-light cityName sidebar-item'>").text(city).append(
                     (((++i) === 1) ? $("<i class='fas fa-home' style='margin-left:3px'>") : ""))));
         }
         //add functionality for all buttons

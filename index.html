@@ -22,9 +22,9 @@
         <a id="show-sidebar" class="btn btn-sm" style='z-index: 69;' href="#">
             <b id='searchButton'>Search A US City <i class="fa fa-search" aria-hidden="true"></i></b>
         </a>
-        <nav id="sidebar" class="sidebar-wrapper" style='z-index: 70;'>
+        <nav id="sidebar" class="sidebar-wrapper" style='z-index: 70;' style='overflow: hidden;'>
             <div class="sidebar-content">
-                <div class="sidebar-brand">
+                <div class="sidebar-brand sidebar-item">
                     <!-- empty brand for spacing  -->
                     <a id='menuTitle'>US City Weather Forecast</a>
                     <!-- x for exiting -->
@@ -33,7 +33,7 @@
                     </div>
                 </div>
                 <!-- sidebar-header  -->
-                <div class="sidebar-search">
+                <div class="sidebar-item sidebar-search">
                     <div>
                         <!-- form -->
                         <form class="input-group" id='form'>
@@ -46,7 +46,7 @@
                         </form>
                     </div>
                 </div>
-                <div class="sidebar-menu">
+                <div class="sidebar-menu" style='overflow: auto;max-height: 80vh;'>
                     <ul>
                         <li class="header-menu">
                             <span>Starred Cities:</span>
@@ -56,16 +56,17 @@
                     <ul id="savedCities">
                     </ul>
                 </div>
-                <div class="sidebar-footer">
-                    <button id='unitButton'>
-                       Toggle Units: <span id='units'>
-                       </span> 
-                    </button>
-                    <button id='international'>
-                        Toggle: <span id='int'>
-                        </span> 
-                     </button>
-                </div>
+            </div>
+            <div class="sidebar-footer" style='bottom:-10px'>
+                <button id='unitButton'>
+                    Toggle Units: <span id='units'>
+                    </span>
+                </button>
+                <button id='international'>
+                    Toggle: <span id='int'>
+                    </span>
+                </button>
+
                 <!-- sidebar-menu end -->
             </div>
         </nav>
