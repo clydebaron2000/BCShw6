@@ -30,7 +30,6 @@ Click the link to view the full project via Github Pages.
 ## Acknowledgments
 
 * UCSD Full Stack Bootcamp for the assignment
-* Mohamed Azouaoui for his sidebar menu
 * [openweathermap.org](https://openweathermap.org) for their free API data on weather.
 * [Mohamed Azouaoui's sidebar menu](https://github.com/azouaoui-med/pro-sidebar-template) 
 
