@@ -4,38 +4,28 @@ $(function() {
     var windowWidth = $(window).width();
     var windowHeight = $(window).height();
     var unit = "imperial"; //initial
-    //geolocation
-    // var currentLat, currentLong;
-    // navigator.geolocation.getCurrentPosition(function(p) {
-    //     currentLat = p.coords.latitude;
-    //     currentLong = p.coords.longitude;
-    //     console.log(currentLat);
-    //     console.log(currentLong);
-    //     console.log(p.coords.accuracy);
-    //     $.ajax({
-    //         url: "https://api.openweathermap.org/data/2.5/weather?lat=" + currentLat + "&lon=" + currentLong + "&appid=" + APIKey,
-    //         method: "GET",
-    //         success: function(response) {
-    //             console.log(response);
-    //         }
-    //     });
-    // });
+    var international = false;
+
+    function capitalize_Words_state(str) {
+        return str.replace(/\w\S*/g, function(txt) { return txt.charAt(0).toUpperCase() + txt.substr(1); });
+    }
+
     function renderPage(cityState, country = "US", units = "metric", count = 7, hourlyFurtureForecast = 24) {
         responsiveIcons();
         var tempUnits, distanceUnits;
         tempUnits = ((units === "imperial") ? "F" : "C");
         distanceUnits = ((units === "imperial") ? "MPH" : "KMH");
-        console.log("requesting");
         $.ajax({
             url: "https://api.openweathermap.org/data/2.5/weather?q=" + cityState + "," + country + "&units=" + units + "&appid=" + APIKey,
             method: "GET",
             success: function(response) {
-                console.log("recieved");
-                if (response.sys.country !== country) {
+                cityState = (international) ? (response.name + ", " + response.sys.country) : capitalize_Words_state(cityState);
+                if (!international && response.sys.country !== country) {
                     $("#userInput").attr("style", "background:pink");
                     $(".input-group-text").attr("style", "background:pink");
                     $("#userInput").tooltip("enable");
                     $("#userInput").tooltip("show");
+                    return;
                 }
                 $.ajax({
                     url: "https://api.openweathermap.org/data/2.5/onecall?lat=" + response.coord.lat + "&lon=" + response.coord.lon + "&units=" + units + "&appid=" + APIKey,
@@ -249,6 +239,21 @@ $(function() {
         $("#units").text(unit);
         renderPage($("#cityName").text(), "US", unit);
     });
+    $("#international").on('click', function() {
+        var buttonVal = $('#int').text();
+        if (buttonVal === "local")
+            $('#int').text("international");
+        else
+            $('#int').text("local");
+        international = !(buttonVal === "international");
+        if (international) {
+            $("#searchButton").text("Search A City");
+            $("#menuTitle").text("City Weather Forecast");
+        } else {
+            $("#searchButton").text("Search A US City");
+            $("#menuTitle").text("US City Weather Forecast");
+        }
+    });
 
     $("#form").submit(function(event) {
         event.preventDefault();
@@ -275,6 +280,7 @@ $(function() {
             localStorage.setItem("savedCities", JSON.stringify(savedCities));
         }
         $("#units").text(unit);
+        $('#int').text(((international) ? "international" : "local"));
         renderSavedCities();
         renderPage(savedCities[0], "US", unit);
     }

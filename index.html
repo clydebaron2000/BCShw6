@@ -20,13 +20,13 @@
     <div class="page-wrapper menu-theme">
         <!-- button for hidden menu -->
         <a id="show-sidebar" class="btn btn-sm" style='z-index: 69;' href="#">
-            <b>Search A US City <i class="fa fa-search" aria-hidden="true"></i></b>
+            <b id='searchButton'>Search A US City <i class="fa fa-search" aria-hidden="true"></i></b>
         </a>
         <nav id="sidebar" class="sidebar-wrapper" style='z-index: 70;'>
             <div class="sidebar-content">
                 <div class="sidebar-brand">
                     <!-- empty brand for spacing  -->
-                    <a>US City Forecast</a>
+                    <a id='menuTitle'>US City Weather Forecast</a>
                     <!-- x for exiting -->
                     <div id="close-sidebar">
                         <i class="fas fa-times"></i>
@@ -61,6 +61,10 @@
                        Toggle Units: <span id='units'>
                        </span> 
                     </button>
+                    <button id='international'>
+                        Toggle: <span id='int'>
+                        </span> 
+                     </button>
                 </div>
                 <!-- sidebar-menu end -->
             </div>

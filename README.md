@@ -7,6 +7,7 @@ An HTML site that utilizes JavaScript, openweathermap.org, and Mohamed Azouaoui'
 * Invalid cities are not searched for, search bar glows red when search is invalid
 * Icons have tooltips that display the type of weather in text
 * Units are togglable between imerial and metric.
+* International/local(US) search.
 
 ## Access to the HTML
 
